@@ -4,6 +4,7 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
+require 'echoe'
 
 require File.dirname(__FILE__) + '/lib/aws/s3'
 
@@ -55,6 +56,19 @@ namespace :doc do
     sh %(scp -r doc marcel@rubyforge.org:/var/www/gforge-projects/amazon/)
   end
 end
+namespace :echoe do  
+  Echoe.new('aws-s3', AWS::S3::Version) do |p|
+    p.description    = "Client library for Amazon's Simple Storage Service's REST API."
+    p.url            = 'http://amazon.rubyforge.org'
+    p.author         = 'marcel@vernix.org'
+    p.email          = 'Marcel Molina Jr.'
+    p.ignore_pattern = ["tmp/*", "script/*"]
+    p.runtime_dependencies = ['xml-simple', 'builder', 'mime-types']
+    p.development_dependencies = []
+  end
+end
+
+Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each { |ext| load ext }
 
 namespace :dist do  
   spec = Gem::Specification.new do |s|
@@ -79,7 +93,8 @@ namespace :dist do
                        '--main',  'README',
                        '--line-numbers', '--inline-source']
   end
-    
+  
+  
   # Regenerate README before packaging
   task :package => 'doc:readme'
   Rake::GemPackageTask.new(spec) do |pkg|
