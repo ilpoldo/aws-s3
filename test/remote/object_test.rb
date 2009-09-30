@@ -327,7 +327,6 @@ class RemoteS3ObjectTest < Test::Unit::TestCase
     
     acl = S3Object.acl(key, TEST_BUCKET)
     assert_equal 3, acl.grants.size
-    
     S3Object.copy(key, copy_key, TEST_BUCKET, :copy_acl => true)
     copied_object = S3Object.find(copy_key, TEST_BUCKET)
     assert_equal acl.grants, copied_object.acl.grants

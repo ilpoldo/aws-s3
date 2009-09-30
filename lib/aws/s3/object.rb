@@ -181,7 +181,8 @@ module AWS
         # Makes a copy of the object with <tt>key</tt> to <tt>copy_key</tt>, preserving the ACL of the existing object if the <tt>:copy_acl</tt> option is true (default false).
         def copy(key, copy_key, bucket = nil, options = {})
           bucket          = bucket_name(bucket)
-          source_key      = path!(bucket, key)
+          #TODO: I'm not sure this is the most flexible solution to copy objects from one bucket to another.
+          source_key      = "#{bucket}#{path!(bucket, key)}"
           default_options = {'x-amz-copy-source' => source_key}
           target_key      = path!(bucket, copy_key)
           returning put(target_key, default_options) do

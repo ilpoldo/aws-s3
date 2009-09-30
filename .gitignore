@@ -1,3 +1,5 @@
 .rake_tasks
 site/public/index.html
 pkg/
+test/remote/s3.yml
+Manifest

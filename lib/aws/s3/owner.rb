@@ -14,7 +14,8 @@ module AWS
         # The owner of the current account.
         def current
           response = Service.get('/')
-          new(response.parsed['owner']) if response.parsed['owner']
+          #TODO: This is a pretty hackish way to get the current account owner.
+          response.parsed['contents'][0]['owner'] if (response.parsed['contents'] && response.parsed['contents'][0])
         end
         memoized :current
       end

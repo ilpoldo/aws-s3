@@ -56,8 +56,7 @@ class RemoteACLTest < Test::Unit::TestCase
     
     assert_equal acl.owner.id, grantee.id
     assert_equal acl.owner.display_name, grantee.display_name
-    
-    assert_equal Owner.current, acl.owner
+    assert_equal Owner.current['id'], acl.owner.id
     
     
     # Manually add read access to an Amazon customer by email address

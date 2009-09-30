@@ -1,10 +1,11 @@
 CHANGELOG
 COPYING
 INSTALL
-README
 README.erb
+README.rdoc
 Rakefile
 TODO
+aws-s3.gemspec
 bin/s3sh
 bin/setup.rb
 lib/aws/s3.rb

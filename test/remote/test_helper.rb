@@ -7,16 +7,13 @@ begin
 rescue LoadError
 end
 
-TEST_BUCKET = 'aws-s3-tests'
+TEST_BUCKET = 'ilpoldo-aws-s3-tests'
 TEST_FILE   = File.dirname(__FILE__) + '/test_file.data'
 
 class Test::Unit::TestCase
   include AWS::S3
   def establish_real_connection
-    Base.establish_connection!(
-      :access_key_id     => ENV['AMAZON_ACCESS_KEY_ID'], 
-      :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
-    )
+    Base.establish_connection!( YAML::load(File.open( File.dirname(__FILE__) + "/s3.yml" )) )
   end
   
   def disconnect!

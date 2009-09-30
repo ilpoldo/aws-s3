@@ -47,7 +47,7 @@ class QueryStringAuthenticationTest < Test::Unit::TestCase
     end
     
     actual_integer = 25
-    query_string = Authentication::QueryString.new(request, key_id, secret, :expires_in => integer_proxy.new(actual_integer))
+    query_string = Authentication::QueryString.new(request, key_id, secret, current_host, :expires_in => integer_proxy.new(actual_integer))
     assert_equal actual_integer, query_string.send(:expires_in)
   end
   
