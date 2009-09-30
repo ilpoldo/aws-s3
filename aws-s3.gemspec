@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{aws-s3}
-  s.version = "0.6.2.1254234545"
+  s.version = "0.6.2.1254325366"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["marcel@vernix.org"]
-  s.date = %q{2009-09-29}
+  s.date = %q{2009-09-30}
   s.description = %q{Client library for Amazon's Simple Storage Service's REST API.}
   s.email = %q{Marcel Molina Jr.}
   s.executables = ["s3sh", "setup.rb"]
