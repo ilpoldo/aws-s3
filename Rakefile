@@ -24,7 +24,7 @@ namespace :doc do
     rdoc.rdoc_dir = 'doc'  
     rdoc.title    = "AWS::S3 -- Support for Amazon S3's REST api"  
     rdoc.options << '--line-numbers' << '--inline-source'
-    rdoc.rdoc_files.include('README.doc')
+    rdoc.rdoc_files.include('README.rdoc')
     rdoc.rdoc_files.include('COPYING')
     rdoc.rdoc_files.include('INSTALL')    
     rdoc.rdoc_files.include('lib/**/*.rb')
@@ -47,7 +47,7 @@ namespace :doc do
       strip_comments[info.comment]
     end
     
-    open('README.doc', 'w') do |file|
+    open('README.rdoc', 'w') do |file|
       file.write ERB.new(IO.read('README.erb')).result(binding)
     end
   end
@@ -79,7 +79,7 @@ namespace :dist do
     s.email             = 'marcel@vernix.org'
     s.author            = 'Marcel Molina Jr.'
     s.has_rdoc          = true
-    s.extra_rdoc_files  = %w(README.doc COPYING INSTALL)
+    s.extra_rdoc_files  = %w(README.rdoc COPYING INSTALL)
     s.homepage          = 'http://amazon.rubyforge.org'
     s.rubyforge_project = 'amazon'
     s.files             = FileList['Rakefile', 'lib/**/*.rb', 'bin/*', 'support/**/*.rb']
@@ -100,7 +100,7 @@ namespace :dist do
   Rake::GemPackageTask.new(spec) do |pkg|
     pkg.need_tar_gz = true
     pkg.package_files.include('{lib,script,test,support}/**/*')
-    pkg.package_files.include('README.doc')
+    pkg.package_files.include('README.rdoc')
     pkg.package_files.include('COPYING')
     pkg.package_files.include('INSTALL')
     pkg.package_files.include('Rakefile')
@@ -310,7 +310,7 @@ namespace :site do
   require 'rdoc/markup/simple_markup'
   require 'rdoc/markup/simple_markup/to_html'
   
-  readme    = lambda { IO.read('README.doc')[/^== Getting started\n(.*)/m, 1] }
+  readme    = lambda { IO.read('README.rdoc')[/^== Getting started\n(.*)/m, 1] }
 
   readme_to_html = lambda do
     handler = SM::ToHtml.new
